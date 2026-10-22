@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Brochure</title>
+<style>
+:root{--gold:#c9a962;--gold2:#d9bf7a;--dark:#0b0d10;--paper:#f4f1ea;--paper2:#ebe6dc;--ink:#1b1b1b;--mute:#6d675d;--line:#d8d2c6}
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;color:var(--ink);background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+html[lang="zh"] body{font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif}
+html[lang="en"] body{font-family:"Helvetica Neue","Hiragino Sans",sans-serif}
+br.sp{display:none}
+.page{width:210mm;height:297mm;overflow:hidden;position:relative;page-break-after:always;background:var(--paper)}
+.page:last-child{page-break-after:auto}
+.page.dark{background:var(--dark);color:#fff}
+.page .inner{position:absolute;left:14mm;right:14mm;top:13mm;bottom:15mm;overflow:hidden}
+.foot{position:absolute;left:14mm;right:14mm;bottom:7mm;display:flex;justify-content:space-between;font-size:6.5pt;letter-spacing:.2em;color:var(--mute);text-transform:uppercase}
+.dark .foot{color:#8f887c}
+.no{display:flex;align-items:center;gap:4mm;font-size:7.5pt;font-weight:500;letter-spacing:.34em;color:var(--gold);text-transform:uppercase}
+.no::before{content:"";width:9mm;height:1px;background:var(--gold)}
+h2{font-size:16pt;font-weight:300;letter-spacing:.08em;line-height:1.45;margin:2.5mm 0 2mm}
+.lead,.hd p{font-size:8.3pt;line-height:1.75;color:var(--mute);max-width:165mm}
+.dark .lead,.dark .hd p{color:#cfc9bd}
+.hd{margin-bottom:4mm}
+.row{display:grid;gap:3.5mm;margin-bottom:3.5mm}
+.row.c2{grid-template-columns:1fr 1fr}.row.c3{grid-template-columns:1fr 1fr 1fr}
+.ph{overflow:hidden;background:#222}
+.ph img{display:block;width:100%;height:100%;object-fit:cover}
+.ph.contain{background:#fff}.ph.contain img{object-fit:contain}
+figcaption,.cap{font-size:6.8pt;color:var(--mute);margin-top:1.3mm;line-height:1.4}
+.dark figcaption{color:#b9b2a5}
+figcaption .t{font-weight:500;color:var(--ink)}.dark figcaption .t{color:#fff}
+figcaption .d{display:block}
+.note{font-size:6.6pt;line-height:1.6;color:var(--mute);text-indent:-1em;padding-left:1em;margin:1.5mm 0}
+.dark .note{color:#9b9488}
+.big{font-size:24pt;font-weight:200;line-height:1;margin:2mm 0}
+.big small{font-size:8pt;color:var(--mute);margin-left:2mm}
+ul{list-style:none}
+.chips{display:flex;flex-wrap:wrap;gap:1.5mm 2mm;margin:2.5mm 0}
+.chips li{font-size:7.2pt;padding:1.1mm 3mm;border:1px solid var(--line);border-radius:99px}
+.dark .chips li{border-color:rgba(255,255,255,.4)}
+.floors{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm;margin:2mm 0 3.5mm}
+.floors li{border:1px solid var(--line);padding:2.5mm 3mm;font-size:7pt;line-height:1.55}
+.dark .floors li{border-color:rgba(255,255,255,.25)}
+.floors .f{font-size:12pt;font-weight:200;color:var(--gold);line-height:1;margin-bottom:1.5mm}
+.floors .n span{display:block;font-weight:500}
+.floors .d{color:var(--mute);margin-top:1mm}.dark .floors .d{color:#b9b2a5}
+.tl{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm 6mm;margin:1mm 0 3.5mm}
+.tl li{border-left:2px solid var(--gold);padding:.5mm 0 .5mm 3mm;font-size:7.2pt;line-height:1.5}
+.tl .y{color:var(--gold);font-weight:500;letter-spacing:.06em}.tl .t{font-weight:500}.tl .d{color:var(--mute)}.dark .tl .d{color:#b9b2a5}
+.times{display:grid;grid-template-columns:1fr 1fr;gap:1mm 8mm;margin:2mm 0 3mm}
+.times li{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(127,127,127,.3);padding:1.3mm 0;font-size:8pt}
+.times .to small{font-size:6.5pt;color:var(--gold);margin-left:1mm}
+.times .m{font-size:13pt;font-weight:200}.times .m small{font-size:6.5pt;margin-left:.5mm;color:var(--gold)}
+.eq{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin:2mm 0 3mm}
+.eq li img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.eq .n{font-size:7pt;margin-top:1.2mm;line-height:1.4}
+.tbl2{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-bottom:3mm}
+.tbl{width:100%;border-collapse:collapse;font-size:6.9pt;line-height:1.5}
+.tbl th,.tbl td{border-top:1px solid var(--line);padding:1.5mm 1.5mm;text-align:left;vertical-align:top}
+.tbl th{width:22mm;color:var(--gold);font-weight:500;white-space:nowrap}
+.tbl b{font-size:9pt}.tbl small{font-size:6pt}
+/* cover / back */
+.cover{background:#000}
+.cover .bg{position:absolute;inset:0}.cover .bg img{width:100%;height:100%;object-fit:cover}
+.cover .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,0) 30%,rgba(0,0,0,.32) 52%,rgba(0,0,0,.92))}
+.cover .in{position:absolute;left:14mm;right:14mm;bottom:15mm;color:#fff}
+.cover .en{font-size:8pt;font-weight:600;letter-spacing:.36em;color:#ecd9a6;text-transform:uppercase;text-shadow:0 0 6px rgba(0,0,0,.85),0 1px 14px rgba(0,0,0,.7)}
+.cover .cp,.cover h1,.cover .no{text-shadow:0 1px 12px rgba(0,0,0,.55)}
+.cover .no{display:block;font-size:60pt;font-weight:200;line-height:1;margin-top:3mm;letter-spacing:-.01em;color:#fff}
+.cover .no::before{display:none}
+.cover .no small{font-size:14pt;font-weight:300;letter-spacing:.2em;margin-left:3mm;color:var(--gold2)}
+.cover h1{font-size:16pt;font-weight:400;letter-spacing:.14em;margin-top:2.5mm}
+.cover .tag{font-size:9.5pt;font-weight:300;letter-spacing:.12em;color:var(--gold2);margin-top:2mm}
+.cover .cp{font-size:15pt;font-weight:300;letter-spacing:.22em;color:#fff;margin:3mm 0 1mm}
+.subh{display:flex;align-items:center;gap:3mm;font-size:7.5pt;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin:16mm 0 4mm}.subh::before{content:"";width:9mm;height:1px;background:var(--gold)}
+.cover .spec{display:flex;flex-wrap:wrap;gap:1.5mm 2mm;margin:3mm 0}
+.cover .spec li{font-size:7.3pt;padding:1.1mm 3mm;border:1px solid rgba(255,255,255,.45);border-radius:99px}
+.cover .p,.back .p{display:flex;align-items:baseline;gap:3mm;font-size:9pt;letter-spacing:.12em;margin-top:2mm}
+.cover .p b,.back .p b{font-size:24pt;font-weight:700;color:var(--gold2)}
+.cover .p small{font-size:7.5pt;color:#cfc9bd}
+.keys{margin-top:5mm}
+.keys ul{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid rgba(255,255,255,.25)}
+.keys li{text-align:center;padding:3mm 1mm;border-right:1px solid rgba(255,255,255,.25)}
+.keys li:last-child{border-right:0}
+.keys .v{font-size:14pt;font-weight:200;line-height:1.1;white-space:nowrap}
+.keys .v small{font-size:6.5pt;margin-left:.5mm;color:var(--gold2)}
+.keys .k{font-size:5.4pt;letter-spacing:.18em;color:#9b9488;margin-top:1.2mm;text-transform:uppercase}
+.back .in h2{font-size:21pt;color:#fff}
+.back .in ul{display:flex;flex-wrap:wrap;gap:1.5mm 2mm;margin:3mm 0}
+.back .in ul li{font-size:7.3pt;padding:1.1mm 3mm;border:1px solid rgba(255,255,255,.45);border-radius:99px}
+.back .url{font-size:7pt;color:#b9b2a5;margin-top:5mm;letter-spacing:.06em}
+</style>
+</head>
+<body>
+<script>
+const DATA={"chapters": [{"no": "01 — Floor Plan", "light": true, "h2": "<h2 data-i18n=\"t023\">19階、南向きの<br/>2LDK</h2>", "lead": "", "blocks": [{"type": "row", "cols": 1, "figs": [{"type": "fig", "src": "img/u00_plan3d.jpg?v=20261021", "w": 1600, "h": 1600, "cap": "<span class=\"t\" data-i18n=\"t021\">3D間取図</span><span class=\"d\" data-i18n=\"t022\">　家具はイメージです</span>", "first": false}]}, {"type": "html", "cls": "big", "html": "<div class=\"big\">81.94<small>㎡</small></div>"}, {"type": "html", "cls": "chips", "html": "<ul class=\"chips\">\n<li data-i18n=\"t025\">LD 約15.3帖</li><li data-i18n=\"t026\">キッチン 約3.9帖</li><li data-i18n=\"t027\">洋室(1) 約7.5帖</li><li data-i18n=\"t028\">洋室(2) 約7.1帖</li><li>WIC</li><li data-i18n=\"t029\">パウダールーム</li><li data-i18n=\"t030\">浴室</li><li data-i18n=\"t031\">バルコニー 8.94㎡</li>\n</ul>"}], "maxPages": 1, "grid": 0, "rowh": 0.0}, {"no": "02 — View", "light": false, "h2": "<h2 data-i18n=\"t032\">グラングリーン大阪を、<br/>見下ろす高さ</h2>", "lead": "<p class=\"lead\" data-i18n=\"t033\">南の窓の正面に、うめきた公園の緑と梅田のビル群。朝日から夜景まで、2024年に先行まちびらきしたグラングリーン大阪を19階から一望します。</p>", "blocks": [{"type": "row", "cols": 1, "figs": [{"type": "fig", "src": "img/v12_view_noon.jpg", "w": 1800, "h": 1344, "cap": "<span class=\"t\" data-i18n=\"t035\">昼　晴天の公園と梅田</span>", "first": true}]}, {"type": "row", "cols": 3, "figs": [{"type": "fig", "src": "img/v11_view_morning.jpg", "w": 1800, "h": 1344, "cap": "<span class=\"t\" data-i18n=\"t034\">朝　朝日に染まるビル群</span>", "first": false}, {"type": "fig", "src": "img/v13_view_sunset.jpg", "w": 1800, "h": 1344, "cap": "<span class=\"t\" data-i18n=\"t036\">夕　夕焼けの空</span>", "first": false}, {"type": "fig", "src": "img/v14_view_night.jpg", "w": 1800, "h": 1344, "cap": "<span class=\"t\" data-i18n=\"t037\">夜　灯りがともる梅田</span>", "first": false}]}], "maxPages": 1, "grid": 0, "rowh": 0.0}, {"no": "03 — Interior", "light": true, "h2": "<h2 data-i18n=\"t038\">濃色の床と石が映える、<br/>2LDKの室内</h2>", "lead": "<p class=\"lead\" data-i18n=\"t039\">LD約15.3帖・キッチン約3.9帖、<br/>洋室は約7.5帖と約7.1帖の2室。<br/>玄関ホールは大理石張り。</p>", "blocks": [{"type": "row", "cols": 3, "figs": [{"type": "fig", "src": "img/u01_ld1.jpg", "w": 1344, "h": 1800, "cap": "<span class=\"t\" data-i18n=\"t040\">リビングダイニング</span>", "first": false}, {"type": "fig", "src": "img/u02_ld2.jpg", "w": 1344, "h": 1800, "cap": "<span class=\"t\" data-i18n=\"t025\">LD 約15.3帖</span>", "first": false}, {"type": "fig", "src": "img/u04_kitchen.jpg", "w": 1344, "h": 1800, "cap": "<span class=\"t\" data-i18n=\"t026\">キッチン 約3.9帖</span>", "first": false}], "h": 56.0}, {"type": "row", "cols": 3, "figs": [{"type": "fig", "src": "img/u06_bed2_corner.jpg", "w": 1800, "h": 1344, "cap": "<span class=\"t\" data-i18n=\"t042\">洋室の窓から</span>", "first": false}, {"type": "fig", "src": "img/u09_washroom.jpg", "w": 1800, "h": 1344, "cap": "<span class=\"t\" data-i18n=\"t029\">パウダールーム</span>", "first": false}, {"type": "fig", "src": "img/u05_bed1.jpg", "w": 1344, "h": 1800, "cap": "<span class=\"t\" data-i18n=\"t043\">洋室</span>", "first": false}], "h": 56.0}, {"type": "row", "cols": 3, "figs": [{"type": "fig", "src": "img/u10_bath.jpg", "w": 1344, "h": 1800, "cap": "<span class=\"t\" data-i18n=\"t030\">浴室</span>", "first": false}, {"type": "fig", "src": "img/u07_wic.jpg", "w": 1344, "h": 1800, "cap": "<span class=\"t\" data-i18n=\"t044\">ウォークインクローゼット</span>", "first": false}, {"type": "fig", "src": "img/u08_entrance.jpg", "w": 1344, "h": 1800, "cap": "<span class=\"t\" data-i18n=\"t045\">大理石の玄関ホール</span>", "first": false}], "h": 56.0}], "maxPages": 1, "grid": 3, "rowh": 56.0}, {"no": "04 — Facilities", "light": true, "h2": "<h2 data-i18n=\"t046\">ホテルのような、<br/>迎えの空間</h2>", "lead": "<p class=\"lead\" data-i18n=\"t047\">淀川を望む35階のスカイラウンジ。<br/>暖炉のあるラウンジと、<br class=\"sp\"/>天井の高いロビー。<br/>24時間の有人管理とコンシェルジュ。</p>", "blocks": [{"type": "row", "cols": 3, "figs": [{"type": "fig", "src": "img/c03_skylounge2.jpg", "w": 1344, "h": 1800, "cap": "<span class=\"t\" data-i18n=\"t048\">35F スカイラウンジ</span>", "first": false}, {"type": "fig", "src": "img/c04_skylounge1.jpg", "w": 1800, "h": 1344, "cap": "<span class=\"t\" data-i18n=\"t049\">35F ラウンジのダイニング</span>", "first": false}, {"type": "fig", "src": "img/c01_skylounge_view1.jpg", "w": 1800, "h": 1344, "cap": "<span class=\"t\" data-i18n=\"t050\">35F 淀川方面の眺望</span>", "first": false}]}, {"type": "row", "cols": 3, "figs": [{"type": "fig", "src": "img/c05_lounge_void.jpg", "w": 1344, "h": 1800, "cap": "<span class=\"t\" data-i18n=\"t051\">吹き抜けのラウンジ</span>", "first": false}, {"type": "fig", "src": "img/c06_lounge_reception.jpg", "w": 1800, "h": 1344, "cap": "<span class=\"t\" data-i18n=\"t052\">緑を望むラウンジ</span>", "first": false}, {"type": "fig", "src": "img/c07_lounge.jpg", "w": 1800, "h": 1205, "cap": "<span class=\"t\" data-i18n=\"t053\">ラウンジ</span>", "first": false}]}, {"type": "row", "cols": 3, "figs": [{"type": "fig", "src": "img/c08_lobby1.jpg", "w": 1800, "h": 1152, "cap": "<span class=\"t\" data-i18n=\"t054\">ロビー</span>", "first": false}, {"type": "fig", "src": "img/c09_lobby2.jpg", "w": 1800, "h": 1197, "cap": "<span class=\"t\" data-i18n=\"t054\">ロビー</span>", "first": false}, {"type": "fig", "src": "img/c10_lobby3.jpg", "w": 1216, "h": 912, "cap": "<span class=\"t\" data-i18n=\"t055\">シャンデリアのロビー</span>", "first": false}]}, {"type": "row", "cols": 3, "figs": [{"type": "fig", "src": "img/c13_evhall2.jpg", "w": 1020, "h": 1368, "cap": "<span class=\"t\" data-i18n=\"t056\">エレベーターホール</span>", "first": false}, {"type": "fig", "src": "img/c12_evhall1.jpg", "w": 762, "h": 508, "cap": "<span class=\"t\" data-i18n=\"t057\">ホテルライクな内廊下</span>", "first": false}, {"type": "fig", "src": "img/u11_door.jpg", "w": 1344, "h": 1800, "cap": "<span class=\"t\" data-i18n=\"t058\">住戸の玄関</span>", "first": false}]}], "maxPages": 2, "grid": 3, "rowh": 0.0}, {"no": "05 — Location", "light": false, "h2": "<h2 data-i18n=\"t059\">大阪駅のとなり、<br/>うめきたの森に住む</h2>", "lead": "<p class=\"lead\" data-i18n=\"t060\">グランフロント大阪の北側、<br/>うめきたの再開発エリア。<br/>2024年9月に先行まちびらきした<br/>グラングリーン大阪の公園がすぐそば。<br/>JR大阪駅まで徒歩6分です。</p>", "blocks": [{"type": "html", "cls": "times", "html": "<ul class=\"times rv\">\n<li><div class=\"to\" data-i18n=\"x001\">JR「大阪」駅</div><div class=\"m\" data-i18n=\"t018\">6<small data-i18n=\"t019\">分</small></div></li>\n</ul>"}, {"type": "note", "html": "<p class=\"note dk\" data-i18n=\"t061\">※徒歩分数です。</p>"}, {"type": "html", "cls": "subh", "html": "<p class=\"subh\">06 — Structure & Management</p>"}, {"type": "html", "cls": "floors", "html": "<ul class=\"floors rv\">\n<li data-f=\"SEISMIC\"><p class=\"f\">Base Isolation</p><p class=\"n\" data-i18n=\"t064\">免震構造</p><p class=\"d\" data-i18n=\"t065\">SRC造 地上48階・地下1階</p></li>\n<li data-f=\"24H\"><p class=\"f\">Security</p><p class=\"n\" data-i18n=\"t066\">24時間有人管理</p><p class=\"d\" data-i18n=\"t067\">コンシェルジュ・内廊下・オートロック</p></li>\n<li data-f=\"RESERVE\"><p class=\"f\">Reserve</p><p class=\"n\" data-i18n=\"t068\">修繕積立金 約13.3億円</p><p class=\"d\" data-i18n=\"t069\">借入金0円（2024年7月末時点）</p></li>\n<li data-f=\"PET\"><p class=\"f\">Pet</p><p class=\"n\" data-i18n=\"t070\">ペット飼育可</p><p class=\"d\" data-i18n=\"t071\">ペット飼育細則による</p></li>\n<li data-f=\"2013\"><p class=\"f\">Completed</p><p class=\"n\" data-i18n=\"t072\">2013年3月竣工</p><p class=\"d\" data-i18n=\"t073\">施工 大林組・竹中工務店</p></li>\n<li data-f=\"525\"><p class=\"f\">Residences</p><p class=\"n\" data-i18n=\"t074\">総戸数 525戸</p><p class=\"d\" data-i18n=\"t075\">管理 三菱地所コミュニティ</p></li>\n</ul>"}], "maxPages": 1, "grid": 0, "rowh": 0.0}, {"no": "07 — Outline", "light": true, "h2": "<h2 data-i18n=\"t076\">募集条件・物件概要</h2>", "lead": "", "blocks": [{"type": "row", "cols": 1, "figs": [{"type": "fig", "src": "img/u00_plan2d.jpg", "w": 1600, "h": 1600, "cap": "<span class=\"t\" data-i18n=\"t077\">間取図</span><span class=\"d\">　2LDK（81.94㎡）</span>", "first": false}]}, {"type": "table", "rows": ["<tr><th data-i18n=\"t078\">物件名</th><td data-i18n=\"t079\">グランフロント大阪<br/>オーナーズタワー　1906号室</td></tr>", "<tr><th data-i18n=\"t080\">賃料</th><td data-i18n=\"t081\"><b data-i18n=\"t082\">420,000円</b>／月</td></tr>", "<tr><th data-i18n=\"t083\">共益費</th><td data-i18n=\"t084\">40,000円／月（月額合計 460,000円）</td></tr>", "<tr><th data-i18n=\"t085\">敷金 / 礼金</th><td data-i18n=\"t086\">敷金1ヶ月 / 礼金1ヶ月</td></tr>", "<tr><th data-i18n=\"t087\">契約形態</th><td data-i18n=\"t088\">定期借家契約</td></tr>", "<tr><th data-i18n=\"t089\">入居時期</th><td data-i18n=\"t090\">即入居可（空室）</td></tr>", "<tr><th data-i18n=\"t091\">所在地</th><td data-i18n=\"t092\">大阪府大阪市北区大深町3-40</td></tr>", "<tr><th data-i18n=\"t093\">交通</th><td data-i18n=\"t094\">JR「大阪」駅 徒歩6分</td></tr>", "<tr><th data-i18n=\"t095\">所在階</th><td data-i18n=\"t096\">19階（南向き）</td></tr>", "<tr><th data-i18n=\"t097\">間取り</th><td data-i18n=\"t098\">2LDK（80Dタイプ）</td></tr>", "<tr><th data-i18n=\"t099\">専有面積</th><td data-i18n=\"t100\">81.94㎡（壁芯）／登記 79.47㎡<br/>バルコニー 8.94㎡</td></tr>", "<tr><th data-i18n=\"t101\">構造・規模</th><td data-i18n=\"t102\">鉄骨鉄筋コンクリート造<br/>地上48階・地下1階建（免震構造）</td></tr>", "<tr><th data-i18n=\"t103\">総戸数</th><td data-i18n=\"t104\">525戸</td></tr>", "<tr><th data-i18n=\"t105\">竣工</th><td data-i18n=\"t106\">2013年3月</td></tr>", "<tr><th data-i18n=\"t107\">施工</th><td data-i18n=\"t108\">大林組・竹中工務店</td></tr>", "<tr><th data-i18n=\"t109\">管理</th><td data-i18n=\"t110\">三菱地所コミュニティ</td></tr>", "<tr><th data-i18n=\"t111\">駐車場</th><td data-i18n=\"t112\">敷地内 月35,000〜68,000円<br/>（空き状況は要確認）</td></tr>"]}, {"type": "note", "html": "<p class=\"note\" data-i18n=\"t113\">※募集条件は2026年10月現在のものです。最新の募集状況・条件はお問い合わせください。</p>"}, {"type": "note", "html": "<p class=\"note\" data-i18n=\"t114\">※3D間取図の家具はイメージです。現況は空室です。</p>"}], "maxPages": 1, "grid": 0, "rowh": 0.0}], "cover": {"en": "<p class=\"en\">Grand Front Osaka — For Rent</p>", "no": "<p class=\"no\">1906<small>19F</small></p>", "h1": "<h1 data-i18n=\"t004\">グランフロント大阪<br class=\"pc\"/> オーナーズタワー</h1>", "tag": "<p class=\"cp\" data-i18n=\"t003\">うめきたの森を、眼下の庭に。</p>", "spec": "<ul class=\"spec\">\n<li data-i18n=\"t005\">19階 南向き</li><li>2LDK</li><li data-i18n=\"t006\">専有 81.94㎡</li><li data-i18n=\"t007\">JR大阪駅 徒歩6分</li><li data-i18n=\"t008\">空室</li>\n</ul>", "price": "<p class=\"p\" data-i18n=\"t009\"><span data-i18n=\"t080\">賃料</span><b data-i18n=\"t002\">42万円</b><small data-i18n=\"t010\">／月（共益費 4万円）</small></p>", "keys": "<div class=\"keys\">\n<ul>\n<li><div class=\"v\">19<small>F</small></div><div class=\"k\">Floor</div></li>\n<li><div class=\"v\">81.94<small>㎡</small></div><div class=\"k\">Area</div></li>\n<li><div class=\"v\">2<small>LDK</small></div><div class=\"k\">Plan</div></li>\n<li><div class=\"v\" data-i18n=\"t014\">南<small data-i18n=\"t015\">向き</small></div><div class=\"k\">Aspect</div></li>\n<li><div class=\"v\" data-i18n=\"t016\">525<small data-i18n=\"t017\">戸</small></div><div class=\"k\">Residences</div></li>\n<li><div class=\"v\" data-i18n=\"t018\">6<small data-i18n=\"t019\">分</small></div><div class=\"k\" data-i18n=\"t020\">JR大阪駅 徒歩</div></li>\n</ul>\n</div>", "img": "img/cover_pdf.jpg"}, "back": {"img": "img/back_pdf.jpg", "inner": "\n<p class=\"en rv\">Grand Front Osaka Owners Tower — 1906</p>\n<h2 class=\"rv\" data-i18n=\"t115\">大阪の真ん中で、<br/>緑と空を、毎日の景色に。</h2>\n<p class=\"p rv\" data-i18n=\"t116\">賃料<b data-i18n=\"t002\">42万円</b>／月（共益費 4万円）</p>\n<ul class=\"rv\">\n<li data-i18n=\"t005\">19階 南向き</li><li>2LDK</li><li>81.94㎡</li><li data-i18n=\"t007\">JR大阪駅 徒歩6分</li><li data-i18n=\"t008\">空室</li>\n</ul>\n"}, "notes": "<p data-i18n=\"t117\">※画像の一部は、実写をもとにAIで色調・天候・植栽を調整したイメージです。掲載内容は2026年10月現在のものです。</p>", "brand": "GRAND FRONT OSAKA — FOR RENT — 1906"};
+const MM=3.7795;
+function tr(el,dic,l){ if(l==='ja')return; [el,...el.querySelectorAll('[data-i18n]')].filter(e=>e.hasAttribute&&e.hasAttribute('data-i18n')).forEach(e=>{const t=dic[l]&&dic[l][e.getAttribute('data-i18n')]; if(t)e.innerHTML=t;}); }
+function fixSrc(h){ return h.replace(/ loading="lazy"/g,'').replace(/(src|poster)="(?!https?:|\.\.\/)([^"]+)"/g,'$1="../$2"'); }
+function el(html){ const d=document.createElement('div'); d.innerHTML=fixSrc(html); return d.firstElementChild||d; }
+function newPage(dark, label, n){
+  const p=document.createElement('section'); p.className='page'+(dark?' dark':'');
+  p.innerHTML='<div class="inner"></div><div class="foot"><span>'+DATA.brand+'</span><span>'+String(n).padStart(2,'0')+'</span></div>';
+  document.body.appendChild(p); return p.querySelector('.inner');
+}
+function figHTML(f,h,contain){ const isMap=/map|route|schedule|plan2d|plan3d|png$|\{lang\}/.test(f.src);   // 図版・言語別の図は切らずに全体を収める
+  return '<figure><div class="ph'+((contain||isMap)?' contain':'')+'" style="height:'+h+'mm"><img src="../'+f.src.replace('{lang}',window.__L||'ja')+'"></div>'+(f.cap?'<figcaption>'+f.cap+'</figcaption>':'')+'</figure>'; }
+function blockEl(b){
+  if(b.type==='row'){
+    const W=182; let h;
+    if(b.cols===1){ const f=b.figs[0]; h=Math.min(W*f.h/f.w, /plan/.test(f.src)?120:92); }
+    else h=b.h||(b.cols===2?56:40);   // b.h＝data-pdf-rowh
+    const d=document.createElement('div'); d.className='row c'+b.cols; d.innerHTML=fixSrc(b.figs.map(f=>figHTML(f,h)).join('')); return d;
+  }
+  if(b.type==='table'){ const rows=b.rows; const half=rows.length>9?Math.ceil(rows.length/2):rows.length;
+    const d=document.createElement('div'); d.className=rows.length>9?'tbl2':'';
+    d.innerHTML='<table class="tbl">'+rows.slice(0,half).join('')+'</table>'+(rows.length>9?'<table class="tbl">'+rows.slice(half).join('')+'</table>':''); return d; }
+  return el(b.html);
+}
+window.overflowPages=()=>[...document.querySelectorAll('.page .inner')].map((x,i)=>({i:i+1,o:x.scrollHeight-x.clientHeight})).filter(x=>x.o>2);
+window.build=function(dic,l){
+  document.documentElement.lang=l; window.__L=l; let n=0;
+  // cover
+  const c=DATA.cover, cv=document.createElement('section'); cv.className='page cover';
+  cv.innerHTML='<div class="bg"><img src="../'+c.img+'"></div><div class="in">'+c.en+(/class="cp"/.test(c.tag)?c.tag+c.no+c.h1:c.no+c.h1+c.tag)+c.spec.replace('class="spec"','class="spec"')+c.price+c.keys+'</div>';
+  tr(cv,dic,l); document.body.appendChild(cv);
+  // chapters
+  const chs=DATA.chapters;
+  if(chs.length){ const last=chs[chs.length-1]; (DATA.notes.match(/<p[\s\S]*?<\/p>/g)||[]).forEach(h=>last.blocks.push({type:'note',html:h.replace('<p','<p class="note"')})); }
+  chs.forEach(ch=>{
+    n++; let inner=newPage(!ch.light, ch.no, n); let used=1; const maxP=ch.maxPages||1;
+    const hd=document.createElement('div'); hd.className='hd'; hd.innerHTML='<p class="no">'+ch.no+'</p>'+ch.h2+(ch.lead?ch.lead.replace(/class="[^"]*"/,'class="lead"'):''); tr(hd,dic,l); inner.appendChild(hd);
+    ch.blocks.forEach(b=>{
+      const e=blockEl(b); tr(e,dic,l); inner.appendChild(e);
+      if(inner.scrollHeight>inner.clientHeight+2 && b.type==='row'){   // まず写真を縮めて収める
+        const phs=[...e.querySelectorAll('.ph')]; const h0=parseFloat(phs[0].style.height);
+        const need=(inner.scrollHeight-inner.clientHeight)/MM+1.5; const h1=h0-need;
+        if(h1>=h0*0.55){ phs.forEach(x=>x.style.height=h1+'mm'); }
+      }
+      if(inner.scrollHeight>inner.clientHeight+2 && b.type==='row' && inner.children.length>1 && used>=maxP){ inner.removeChild(e); return; }  // 収まらない写真段は省く（maxPages まで使い切った後だけ）
+      if(inner.scrollHeight>inner.clientHeight+2 && inner.children.length>1){
+        inner.removeChild(e); n++; used++; inner=newPage(!ch.light, ch.no, n);
+        const h=document.createElement('div'); h.className='hd'; h.innerHTML='<p class="no">'+ch.no+'</p>'; inner.appendChild(h); inner.appendChild(e);
+      }
+    });
+  });
+  // back
+  const bk=document.createElement('section'); bk.className='page cover back';
+  bk.innerHTML='<div class="bg"><img src="../'+DATA.back.img+'"></div><div class="in">'+fixSrc(DATA.back.inner)+'</div>';
+  tr(bk,dic,l); document.body.appendChild(bk);
+};
+</script>
+</body>
+</html>
